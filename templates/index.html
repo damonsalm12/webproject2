@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
     <!-- Bootstrap Theme -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css" integrity="sha384-jzngWsPS6op3fgRCDTESqrEJwRKck+CILhJVO5VvaAZCq8JYf8HsR/HPpBOOPZfR" crossorigin="anonymous">
-    <script src={{ url_for('static', filename='homepage.js') }} ></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src={{ url_for('static', filename='homepage.js') }} ></script>
     <title>Flack-A messaging service</title>
 </head>
 <body>
@@ -17,9 +17,13 @@
         <div class="list-group text center" id="channels">
             <h2 class="h2 text-weight-light"></h2>
             {% for channel in channels %}
-                <a href={{url_for(disp_channel) + channel}} class="list-group-item list-group-item-action">{{channel}}</a>
-            (% endfor %)
+                <a href={{url_for("disp_channel", channel=channel)}} class="list-group-item list-group-item-action">{{channel}}</a>
+            {% endfor %}
         </div>
     </div>
+    <form class="form-group">
+      <input type="text" id="channelname">
+      <button type="submit" id="create-button">Create</button>
+    </form>
 </body>
 </html>

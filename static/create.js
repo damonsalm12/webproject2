@@ -1,10 +1,10 @@
-//Connect to socket
-var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+
 //Handle user input for name
 addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#user-form').onsubmit = () => {
+
+    document.querySelector('#user-form').onsubmit = (e) => {
         //get entered screenname
-        var screenname = document.querySelector("#screennname");
+        var screenname = document.querySelector("#screenname").value;
         //check that username is long enough
         if(screenname.length < 5)
             alert("Name must be at least five characters");
@@ -12,9 +12,8 @@ addEventListener('DOMContentLoaded', () => {
         {
             //Set name in local storage and notify server to redirect
             localStorage.setItem("name", screenname);
-            socket.emit('new user', {"new user": true});
+            window.location.replace("..")
         };
-        //Stop form from submitting
         return false;
     };
 });

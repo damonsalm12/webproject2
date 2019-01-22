@@ -19,14 +19,16 @@ def create():
     # Provides user the form to create a new name
     return render_template("create.html")
 
-@app.route("/disp_channels/<string:channel>")
-def disp_channels(channel):
-    # Displays channel shown by user 
+@app.route("/disp_channel/<string:channel>")
+def disp_channel(channel):
+    # Displays channel shown by user
     return render_template("channel.html", messages=channels[channel].getlist(), name=channel)
 
 @socketio.on("check name exists")
 def getname(data):
+    print("check")
     # Check if user does not yet have name and redirect to create if needed
+    # this wont work because there is no request, need to fix
     if not(data['name exists']):
         return redirect("/create")
     else:
@@ -45,4 +47,5 @@ def newchannel(data):
     socketio.emit("create channel", {"create channel": channelname})
 
 if __name__ == '__main__':
+
     socketio.run(app)
