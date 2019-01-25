@@ -4,16 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
     <!--Bootstrap CDN-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
     <!-- Bootstrap Theme -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css" integrity="sha384-jzngWsPS6op3fgRCDTESqrEJwRKck+CILhJVO5VvaAZCq8JYf8HsR/HPpBOOPZfR" crossorigin="anonymous">
-    <script src={{ url_for('static', filename='create.js') }} ></script>
+    <script src={{ url_for('static', filename='channel.js') }} ></script>
     <title></title>
 </head>
 <body>
     <div class="container">
-
+        <h2 id="name">{{name}}</h2>
+        <ul id="message-list" class="list-group">
+            {% for message in messages%}
+                <li class="list-group-item">{{message}}</li>
+            {% endfor %}
+        </ul>
+        <form id="message">
+            <div class="input-group mb-3">
+                <input type="text" id="message-text" class="form-control" placeholder="Your messege here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+        <a href="../../homepage">Choose a diferent channel</a>
     </div>
 </body>
 </html>

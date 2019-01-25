@@ -9,10 +9,13 @@ socketio = SocketIO(app)
 
 channels = {}
 
-
 @app.route("/")
 def index():
-    return render_template("index.html", channels=channels)
+    return render_template("index.html")
+
+@app.route("/homepage")
+def channel_list():
+    return render_template("homepage.html", channels=channels)
 
 @app.route("/create")
 def create():
@@ -41,10 +44,19 @@ def newuser():
 
 @socketio.on("new channel")
 def newchannel(data):
+    # Creates a new channel object in memory and emits name to all users
     channelname = data["new channel"]
     my_channel= Channel(channelname)
     channels[channelname] = my_channel
     socketio.emit("create channel", {"create channel": channelname})
+
+@socketio.on("new message")
+def new_message(data):
+    #stores messages in channel object and emits to all users
+    message = data['message']
+    channel = data['channel']
+    channels[channel].addmessage(message)
+    socketio.emit('add message', {'channel': channel, 'message': message})
 
 if __name__ == '__main__':
 
