@@ -44,6 +44,7 @@ def newuser():
 
 @socketio.on("new channel")
 def newchannel(data):
+    print("recieved channel")
     # Creates a new channel object in memory and emits name to all users
     channelname = data["new channel"]
     my_channel= Channel(channelname)
@@ -53,6 +54,10 @@ def newchannel(data):
 @socketio.on("new message")
 def new_message(data):
     #stores messages in channel object and emits to all users
+    print("recieved message ")
+    for keys,values in data.items():
+        print(keys)
+        print(values)
     message = data['message']
     channel = data['channel']
     channels[channel].addmessage(message)

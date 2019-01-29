@@ -22,8 +22,8 @@
                 <a href={{url_for("disp_channel", channel=channel)}} class="list-group-item list-group-item-action">{{channel}}</a>
             {% endfor %}
         </div>
-        <div class="col-md-4 col-md-offset-4"> 
-            <form>
+        <div class="col-md-4 col-md-offset-4">
+            <form id="create-channel">
             <div class="form-group">
                 <input type="text" class=formcontrol id="channelname">
                 <button type="submit" id="create-button">Create</button>

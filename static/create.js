@@ -2,7 +2,8 @@
 //Handle user input for name
 addEventListener('DOMContentLoaded', () => {
 
-    document.querySelector('#user-form').onsubmit = () => {
+    document.querySelector('#user-form').onsubmit = (e) => {
+        e.preventDefault();
         //get entered screenname
         var screenname = document.querySelector("#screenname").value;
         //check that username is long enough

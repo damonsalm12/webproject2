@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <h2 id="name">{{name}}</h2>
+        <h2 id="name" name={{name}}>{{name}}</h2>
         <ul id="message-list" class="list-group">
             {% for message in messages%}
                 <li class="list-group-item">{{message}}</li>
